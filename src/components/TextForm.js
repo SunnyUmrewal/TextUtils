@@ -166,33 +166,39 @@ export default function TextForm(props) {
     const handleUpClick=()=>{
         let newText= text.toUpperCase();
         setText(newText);
+        props.showAlert("Converted to Uppercase!", "success");
 
     }
     const handleLowerClick=()=>{
         let newText= text.toLowerCase();
         setText(newText);
+        props.showAlert("Converted to Lowercase!", "success");
 
     }
 
     const handleTitleCase=()=>{
         let newText=text.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase()).join(' ');
         setText(newText);
+        props.showAlert("Converted to Title case!", "success");
     }
 
     const handleExtractText = () => {
       let newText = text.replace(/[^a-zA-Z\s]/g, '').replace(/\s+/g, '').trim();
       setText(newText);
+      props.showAlert("Text Extracted!", "success");
     };
 
     const handleCopy=(event)=>{
       var text=document.getElementById("myBox");
       text.select();
       navigator.clipboard.writeText(text.value);
+      props.showAlert("Text copied!", "success");
     }
 
     const handleExtraSpace=(event)=>{
       let newText=text.split(/[ ]+/);
       setText(newText.join(" "));
+      props.showAlert("Removed extra spaces!", "success");
     }
 
 
@@ -236,10 +242,19 @@ export default function TextForm(props) {
     
     </div>
 
-    <div className="container mb-2 my-3 " style={{color:props.mode==='dark'?'white':'black'}}  >
+    <div
+      className="container mb-2 my-3"
+      style={{ color: props.mode === 'dark' ? 'white' : 'black' }}
+    >
       <h2>Your content summary :</h2>
-      <p>{text.split(" ").length} Words and {text.length} Characters</p>
-      <p>{.008 * text.split(" ").length} Minuites to read the whole text.</p>
+      
+      <p>
+        {text.trim().split(/\s+/).filter(Boolean).length} Words and {text.length} Characters
+      </p>
+
+      <p>
+        {0.008 * text.trim().split(/\s+/).filter(Boolean).length} Minutes to read the whole text.
+      </p>
     </div>
 
 

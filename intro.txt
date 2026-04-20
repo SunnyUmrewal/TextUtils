@@ -1,0 +1,34 @@
+we will learn about props and components
+
+
+here instead of writing every component code in app.js we will create
+a component folder and will create a file for each component.
+
+and will import that file in out app.js
+
+when making a component keep its first letter of the file always capital
+
+
+
+we learned about props and proptypes read the app.js and Navbar.js file.
+
+
+
+---
+
+
+we are basically making a react based website
+which takes text as input and makes every text -> capitalize, bold, etc.
+
+so created a navbar component
+textform component,
+
+---
+using hook concept and state concept.
+
+using state which is a component's memory that is used to store data and change it over time without reloading the screen.
+see the textform.js
+
+
+
+

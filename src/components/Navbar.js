@@ -20,6 +20,8 @@ when making a component keep its first letter of the file always capital
 import React from 'react'
 import PropTypes from 'prop-types'
 
+// import { Link } from 'react-router-dom';
+
 
 //props once given should never be changed like (prop.title+=1;) no one should do that. we can use state to do so.
 
@@ -28,7 +30,8 @@ export default function Navbar(props) {  //giving args for title
     <>
       <nav className={`navbar navbar-expand-lg navbar-${props.mode} bg-${props.mode}`}>
         <div className="container-fluid">
-          <a className="navbar-brand" href="/">{props.title}</a>   {/* //using title here */}
+          {/* <Link className="navbar-brand" to="/">{props.title}</Link>   //using title here */}
+          <a className="navbar-brand" href="#">{props.title}</a>   {/* //using title here */}
 
           <button
             className="navbar-toggler"
@@ -46,18 +49,54 @@ export default function Navbar(props) {  //giving args for title
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
-                <a className="nav-link active" aria-current="page" href="/">
+                {/* <Link className="nav-link active" aria-current="page" to="/">
+                  Home
+                </Link> */}
+                <a className="nav-link active" aria-current="page" href="#">
                   Home
                 </a>
               </li>
               
 
               <li className="nav-item">
-                <a className="nav-link active" href="/">
+                {/* <Link className="nav-link active" to="/about">
+                  {props.aboutText}
+                </Link> */}
+                <a className="nav-link active" href="#">
                   {props.aboutText}
                 </a>
               </li>
             </ul>
+
+            <div className="btn-group dropstart mx-3">
+              <button type="button" className="btn btn-secondary dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+                Themes
+              </button>
+
+              <ul className="dropdown-menu text-center">
+                <li>
+                  <button className="dropdown-item" onClick={() => props.changeTheme("default")}>
+                    Default
+                  </button>
+                </li>
+
+                <li>
+                  <button className="dropdown-item" onClick={() => props.changeTheme("retro")}>
+                    Retro
+                  </button>
+                </li>
+                <li>
+                  <button className="dropdown-item" onClick={() => props.changeTheme("valentine")}>
+                    Valentine
+                  </button>
+                </li>
+                <li>
+                  <button className="dropdown-item" onClick={() => props.changeTheme("dracula")}>
+                    Dracula
+                  </button>
+                </li>
+              </ul>
+            </div>
 
             <div className={`form-check form-switch me-3 text-${props.mode==='light'?'dark':'light'}`}>  {/*if i want to change something dynamically then i can write java script here */}
               <input className="form-check-input" onClick={props.toggleMode} type="checkbox" role="switch" id="flexSwitchCheckDefault"/>
